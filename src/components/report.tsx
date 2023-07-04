@@ -1,24 +1,34 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
+import { IReport } from '../types'
 import { Button } from './ui/button'
-import { Input } from './ui/input'
-import { Loader } from './ui/Loader/Loader'
+import { timestampToDateTime } from '../utils/date'
+import { Div } from './ui/div'
 
 interface ReportProps {
-  title: string
+  report: IReport
 }
 
-export const Report: FC<ReportProps> = ({ title }) => {
-  const [isLoading, setIsLoading] = useState(true)
-
+export const Report: FC<ReportProps> = ({ report }) => {
+  const getColor = () => {
+    switch (report.status) {
+      case 'cancelled':
+        return 'bg-red-100'
+      case 'completed':
+        return 'bg-green-100'
+      case 'pending':
+        return 'bg-blue-100'
+      default:
+        return ''
+    }
+  }
   return (
-    <div className="rounded bg-gray-100 m-2 p-2 max-w-[400px]">
-      <h3>{title}</h3>
-      <Input placeholder="С" type="date" label="с"/>
-      <Input placeholder="По" type="date" label="по"/>
-      <div className="flex justify-end">
-        {isLoading && <p>В течение нескольких минут появится ссылка для скачивания отчета</p>}
-        {isLoading ? <div><Loader/></div> : <Button>Скачать</Button>}
-      </div>
+    <div className={`border rounded flex justify-between mb-2 px-3 py-2 ${getColor()}`}>
+      <p className="self-center">"{report.title}" (создан в {timestampToDateTime(report.createdAt)})</p>
+
+      <Div className="text-end mb-0.5" visible={report.status === 'completed'}>
+        <Button className="content-end" color="lite">Скачать</Button>
+        <p className="text-gray-400 text-xs">завершен в {timestampToDateTime(report.completedAt)}</p>
+      </Div>
     </div>
   )
 }
