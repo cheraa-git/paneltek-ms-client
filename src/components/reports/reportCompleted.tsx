@@ -9,14 +9,18 @@ interface ReportCompletedProps {
 
 export const ReportCompleted: FC<ReportCompletedProps> = ({ report }) => {
 
+  const handleDownloadReport = () => {
+    window.open(report.url, "_blank")
+  }
   return (
     <Alert severity="success" sx={{ mb: 1 }} action={
       <Box textAlign="end">
-        <Button className="content-end">Скачать</Button>
+        <Button onClick={handleDownloadReport}>Скачать</Button>
         <Typography fontSize={12}>завершен в {timestampToDateTime(report.completedAt)}</Typography>
       </Box>
     }>
-      <Typography alignSelf="center">"{report.title}" (создан в {timestampToDateTime(report.createdAt)})</Typography>
+      <Typography alignSelf="center" pb="6px">"{report.title}"</Typography>
+      <Typography fontSize={12} >создан в {timestampToDateTime(report.createdAt)}</Typography>
     </Alert>
   )
 }

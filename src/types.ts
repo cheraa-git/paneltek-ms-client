@@ -6,7 +6,8 @@ export interface IReport {
   status: 'pending' | 'cancelled' | 'completed'
   type: IReportType
   url?: string
-  createdAt: string
-  completedAt?: string
+  createdAt: number
+  completedAt?: number
+  length?: number
 }
 

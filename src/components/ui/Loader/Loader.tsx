@@ -1,5 +1,6 @@
 import './Loader.css'
+import { Typography } from '@mui/material'
 
 export const Loader = () => {
-  return <span className="loader"></span>
+  return <Typography fontSize={12} className="loader"></Typography>
 }

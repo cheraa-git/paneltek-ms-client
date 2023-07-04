@@ -12,10 +12,11 @@ export const Reports: FC = () => {
   useEffect(() => {
     dispatch(getReports())
   }, [dispatch])
+  const sortedReports = [...reports].sort((a, b) => b.createdAt - a.createdAt)
   return (
     <>
       <Typography variant="h3" textAlign="center" mt={3}>Отчеты</Typography>
-      {reports.map(report => {
+      {sortedReports.map(report => {
         if (report.status === 'completed') return <ReportCompleted report={report} key={report.id}/>
         if (report.status === 'cancelled') return <ReportCancelled report={report} key={report.id}/>
         if (report.status === 'pending') return <ReportPending report={report} key={report.id}/>

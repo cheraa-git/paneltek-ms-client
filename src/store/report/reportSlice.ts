@@ -20,10 +20,16 @@ export const reportSlice = createSlice({
     },
     setReportLoading: (state, { payload }: PayloadAction<boolean>) => {
       state.loading = payload
+    },
+    addReport: (state, { payload }: PayloadAction<IReport>) => {
+      state.reports.unshift(payload)
+    },
+    updateReport: (state, { payload }: PayloadAction<IReport>) => {
+      state.reports = state.reports.map(report => report.id === payload.id ? { ...report, ...payload } : report)
     }
   }
 })
 
-export const { setReports, setReportLoading } = reportSlice.actions
+export const { setReports, setReportLoading, addReport, updateReport } = reportSlice.actions
 
 export const reportReducer = reportSlice.reducer
