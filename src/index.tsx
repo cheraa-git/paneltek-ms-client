@@ -9,6 +9,7 @@ import { store } from './store/store'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import 'dayjs/locale/ru'
+import { SnackbarProvider } from 'notistack'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,7 +19,9 @@ root.render(
     <BrowserRouter>
       <Provider store={store}>
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ru">
-          <App/>
+          <SnackbarProvider autoHideDuration={7000}>
+            <App/>
+          </SnackbarProvider>
         </LocalizationProvider>
       </Provider>
     </BrowserRouter>

@@ -13,11 +13,10 @@ interface TemplateProps {
 
 export const Template: FC<TemplateProps> = ({ title }) => {
   const dispatch = useAppDispatch()
-  const { reports } = useAppSelector(state => state.report)
+  const { reports, loading } = useAppSelector(state => state.report)
   const [startDate, setStartDate] = useState<string | null>(null)
   const [endDate, setEndDate] = useState<string | null>(null)
-  const isPending = !reports.find(report => report.status === 'pending')
-  const loading = true
+  const isPending = !!reports.find(report => report.status === 'pending')
 
   const handleSubmit = () => {
     if (startDate) {
@@ -39,7 +38,7 @@ export const Template: FC<TemplateProps> = ({ title }) => {
             <Typography alignSelf="center">Отчет формируется, это может занять некоторое время...</Typography>
           </IfBox>
           <IfBox visible={!isPending} mt={2}>
-            <LoadingButton loading={loading} variant="outlined" onClick={handleSubmit}>Создать</LoadingButton>
+            <LoadingButton loading={loading} disabled={!startDate} variant="outlined" onClick={handleSubmit}>Создать</LoadingButton>
           </IfBox>
 
         </Box>

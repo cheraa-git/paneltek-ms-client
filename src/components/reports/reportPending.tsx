@@ -18,7 +18,7 @@ export const ReportPending: FC<ReportPendingProps> = ({ report }) => {
         <Typography fontSize={12}>количество: {report.length}</Typography>
       </Box>
     }>
-      <Typography alignSelf="center">"{report.title}"</Typography>
+      <Typography alignSelf="center">{report.title}</Typography>
       <Typography fontSize={12}>создан в {timestampToDateTime(report.createdAt)}</Typography>
 
     </Alert>

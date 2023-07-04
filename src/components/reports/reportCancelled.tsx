@@ -16,7 +16,7 @@ export const ReportCancelled: FC<ReportCancelledProps> = ({ report }) => {
         <Typography fontSize={12}>отменен в {timestampToDateTime(report.completedAt)}</Typography>
       </Box>
     }>
-      <Typography alignSelf="center">"{report.title}"</Typography>
+      <Typography alignSelf="center">{report.title}</Typography>
       <Typography fontSize={12}>создан в {timestampToDateTime(report.createdAt)}</Typography>
     </Alert>
   )

@@ -19,7 +19,7 @@ export const ReportCompleted: FC<ReportCompletedProps> = ({ report }) => {
         <Typography fontSize={12}>завершен в {timestampToDateTime(report.completedAt)}</Typography>
       </Box>
     }>
-      <Typography alignSelf="center" pb="6px">"{report.title}"</Typography>
+      <Typography alignSelf="center" pb="6px">{report.title}</Typography>
       <Typography fontSize={12} >создан в {timestampToDateTime(report.createdAt)}</Typography>
     </Alert>
   )
