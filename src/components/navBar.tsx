@@ -1,16 +1,13 @@
 import { FC } from 'react'
 import Logo from '../logo.png'
+import { Box, Container } from '@mui/material'
 
 export const NavBar: FC = () => {
   return (
-    <nav className="bg-gray-800">
-      <div className="mx-auto max-w-7xl px-2">
-        <div className="relative flex h-16 items-center text-white">
-          <div className="block sm:flex min-w-[200px]">
-            <img src={Logo} alt="" width={250}/>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <Box bgcolor="#212936">
+      <Container>
+        <img src={Logo} alt="" width={250}/>
+      </Container>
+    </Box>
   )
 }

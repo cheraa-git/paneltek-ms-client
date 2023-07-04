@@ -9,3 +9,4 @@ export interface IReport {
   createdAt: string
   completedAt?: string
 }
+

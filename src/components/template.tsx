@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
-import { Button } from './ui/button'
-import { Input } from './ui/input'
 import { Loader } from './ui/Loader/Loader'
+import { Box, Button, Card, CardContent, CardHeader, Typography } from '@mui/material'
+import { DateTimePicker } from '@mui/x-date-pickers'
 
 interface TemplateProps {
   title: string
@@ -11,14 +11,19 @@ export const Template: FC<TemplateProps> = ({ title }) => {
   const [isLoading] = useState(false)
 
   return (
-    <div className="rounded bg-gray-100 m-2 p-2 max-w-[400px]">
-      <h3>{title}</h3>
-      <Input placeholder="С" type="date" label="с"/>
-      <Input placeholder="По" type="date" label="по"/>
-      <div className="flex justify-end">
-        {isLoading && <p>В течение нескольких минут появится ссылка для скачивания отчета</p>}
-        {isLoading ? <div><Loader/></div> : <Button>Создать</Button>}
-      </div>
-    </div>
+    <Card>
+      <CardHeader title={title}/>
+      <CardContent>
+        <Box display="flex">
+          <DateTimePicker ampm={false}/>
+          <Typography alignSelf="center" mx={2}>–</Typography>
+          <DateTimePicker ampm={false}/>
+        </Box>
+        <Box display="flex" justifyContent="end">
+          {isLoading && <p>В течение нескольких минут появится ссылка для скачивания отчета</p>}
+          {isLoading ? <div><Loader/></div> : <Button>Создать</Button>}
+        </Box>
+      </CardContent>
+    </Card>
   )
 }
